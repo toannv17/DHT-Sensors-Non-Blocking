@@ -1,0 +1,29 @@
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+
+### CMake
+cmake-build-debug/
+cmake-build-release/
+
+### CMake template
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+
+### macOS template
+# General
+.DS_Store
+.AppleDouble
+.LSOverride

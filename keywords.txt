@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map For DHT-Sensors-Non-Blocking
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+DHT_Async	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+measure	KEYWORD2
+wait	KEYWORD2
+convertCtoF	KEYWORD2
+convertFtoC	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+DHT_TYPE_11 LITERAL1
+DHT_TYPE_12 LITERAL1
+DHT_TYPE_21 LITERAL1
+DHT_TYPE_22 LITERAL1
