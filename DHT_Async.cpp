@@ -45,7 +45,9 @@ bool DHT_Async::measure(float *temperature, float *humidity) {
 
 /* Wait until finished reading data from sensor. */
 void DHT_Async::wait() {
-    while (dhtState != DHT_IDLE && dhtState != DHT_COOLDOWN) {}
+    while (dhtState != DHT_IDLE) {
+        readAsync();
+    }
 }
 
 float DHT_Async::readTemperature() const {
