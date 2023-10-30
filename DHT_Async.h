@@ -20,7 +20,7 @@ public:
 
     bool measure(float *temperature, float *humidity);
 
-    void wait();
+    void measureSync(float *temperature, float *humidity);
 
     float convertCtoF(float c);
 

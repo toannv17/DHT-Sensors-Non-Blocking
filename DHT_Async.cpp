@@ -34,6 +34,14 @@ DHT_Async::DHT_Async(uint8_t pin, uint8_t type)
  * The temperature is in degrees Celsius, and the humidity is in %.
  */
 bool DHT_Async::measure(float *temperature, float *humidity) {
+    if (
+        (dhtState == DHT_BEGIN_MEASUREMENT_2 && dhtTimestamp > 500) ||
+        (dhtState == DHT_DO_READING && && dhtTimestamp > 90)
+    ) {
+        measureSync(temperature, humidity);
+        return true;
+    }
+
     if (readAsync()) {
         *temperature = readTemperature();
         *humidity = readHumidity();
@@ -43,11 +51,10 @@ bool DHT_Async::measure(float *temperature, float *humidity) {
     }
 }
 
-/* Wait until finished reading data from sensor. */
-void DHT_Async::wait() {
-    while (dhtState != DHT_IDLE) {
-        readAsync();
-    }
+void DHT_Async::measureSync(float *temperature, float *humidity) {
+    while (readAsync() == false) {}
+    *temperature = readTemperature();
+    *humidity = readHumidity();
 }
 
 float DHT_Async::readTemperature() const {
