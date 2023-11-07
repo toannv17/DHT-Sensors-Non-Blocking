@@ -12,8 +12,8 @@ DHT_Async	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-measure	KEYWORD2
-wait	KEYWORD2
+measure	    KEYWORD2
+measureSync	KEYWORD2
 convertCtoF	KEYWORD2
 convertFtoC	KEYWORD2
 
