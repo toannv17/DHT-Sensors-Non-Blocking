@@ -33,10 +33,11 @@ DHT_Async::DHT_Async(uint8_t pin, uint8_t type)
  * Instruct the DHT to begin sampling.  Keep polling until it returns true.
  * The temperature is in degrees Celsius, and the humidity is in %.
  */
-bool DHT_Async::measure(float *temperature, float *humidity) {
-    if (
-        (dhtState == DHT_BEGIN_MEASUREMENT_2 && dhtTimestamp > 500) ||
-        (dhtState == DHT_DO_READING && && dhtTimestamp > 90)
+bool DHT_Async::measure(float *temperature, float *humidity, bool autoSync) {
+    if (autoSync && (
+            (dhtState == DHT_BEGIN_MEASUREMENT_2 && dhtTimestamp > 500) ||
+            (dhtState == DHT_DO_READING && dhtTimestamp > 90)
+        )
     ) {
         measureSync(temperature, humidity);
         return true;
@@ -52,9 +53,13 @@ bool DHT_Async::measure(float *temperature, float *humidity) {
 }
 
 void DHT_Async::measureSync(float *temperature, float *humidity) {
-    while (readAsync() == false) {}
-    *temperature = readTemperature();
-    *humidity = readHumidity();
+    while (1) {
+        if (readAsync()) {
+            *temperature = readTemperature();
+               *humidity = readHumidity();
+            return;
+        }
+    }
 }
 
 float DHT_Async::readTemperature() const {

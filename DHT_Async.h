@@ -18,7 +18,7 @@ class DHT_Async {
 public:
     DHT_Async(uint8_t pin, uint8_t type);
 
-    bool measure(float *temperature, float *humidity);
+    bool measure(float *temperature, float *humidity, bool autoSync = true);
 
     void measureSync(float *temperature, float *humidity);
 
