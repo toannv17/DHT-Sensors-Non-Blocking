@@ -35,8 +35,8 @@ DHT_Async::DHT_Async(uint8_t pin, uint8_t type)
  */
 bool DHT_Async::measure(float *temperature, float *humidity, bool autoSync) {
     if (autoSync && (
-            (dhtState == DHT_BEGIN_MEASUREMENT_2 && dhtTimestamp > 500) ||
-            (dhtState == DHT_DO_READING && dhtTimestamp > 90)
+            (dhtState == DHT_BEGIN_MEASUREMENT_2 && millis() - dhtTimestamp > 500) ||
+            (dhtState == DHT_DO_READING && millis() - dhtTimestamp > 90)
         )
     ) {
         measureSync(temperature, humidity);
